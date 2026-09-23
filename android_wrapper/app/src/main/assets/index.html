@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>多平台 AI 去水印助手</title>
+  <style>
+    :root {
+      --bg: #f4f7ff;
+      --card: rgba(255,255,255,0.8);
+      --primary: #4f46e5;
+      --primary-2: #8b5cf6;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --success: #22c55e;
+      --shadow: 0 18px 45px rgba(79,70,229,0.15);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: linear-gradient(180deg, #eef4ff 0%, #f8f9ff 100%);
+      color: var(--text);
+    }
+    .app {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 32px 18px 60px;
+    }
+    .hero {
+      background: linear-gradient(135deg, rgba(79,70,229,0.95), rgba(139,92,246,0.92));
+      border-radius: 26px;
+      padding: 28px 22px;
+      color: white;
+      box-shadow: var(--shadow);
+    }
+    .hero h1 {
+      margin: 0 0 12px;
+      font-size: clamp(28px, 4vw, 42px);
+      letter-spacing: 1px;
+    }
+    .hero p {
+      margin: 0;
+      color: rgba(255,255,255,0.9);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin-top: 26px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.8);
+      border-radius: 22px;
+      padding: 18px 16px;
+      box-shadow: 0 14px 34px rgba(15,23,42,0.06);
+      backdrop-filter: blur(10px);
+    }
+    .badge {
+      display: inline-block;
+      padding: 6px 10px;
+      background: rgba(79,70,229,0.1);
+      color: var(--primary);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 22px;
+    }
+    .card p {
+      margin: 0 0 16px;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 13px;
+    }
+    .btn {
+      width: 100%;
+      border: none;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: white;
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 12px 24px rgba(79,70,229,0.2);
+    }
+    .btn:hover { filter: brightness(1.05); }
+    .footer {
+      margin-top: 26px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <section class="hero">
+      <h1>多平台 AI 去水印助手</h1>
+      <p>支持抖音、豆包、即梦、Dola、小云雀、可灵等平台的内容提取入口，适合快速查看平台入口和提取方案。</p>
+    </section>
+
+    <div class="grid">
+      <div class="card">
+        <div class="badge">Doubao</div>
+        <h3>豆包</h3>
+        <p>适合 AI 对话和内容生成场景，提供稳定的提取入口。</p>
+        <button class="btn" onclick="openPlatform('https://www.doubao.com/chat')">提取无水印</button>
+      </div>
+
+      <div class="card">
+        <div class="badge">Jimeng</div>
+        <h3>即梦</h3>
+        <p>适合视频生成和内容分发，使用稳定的入口地址完成提取。</p>
+        <button class="btn" onclick="openPlatform('https://jimeng.jianying.com/')">提取无水印</button>
+      </div>
+
+      <div class="card">
+        <div class="badge">Dola</div>
+        <h3>Dola</h3>
+        <p>适合文生图与创意优化，进入平台后可使用相应下载策略。</p>
+        <button class="btn" onclick="openPlatform('https://dola.ai/')">提取无水印</button>
+      </div>
+
+      <div class="card">
+        <div class="badge">Xiaoyunque</div>
+        <h3>小云雀</h3>
+        <p>适合云端生成与多模型协作，入口匀速切换，便于快速提取。</p>
+        <button class="btn" onclick="openPlatform('https://cloud.xiaoyunque.com/')">提取无水印</button>
+      </div>
+
+      <div class="card">
+        <div class="badge">Kling</div>
+        <h3>可灵</h3>
+        <p>面向生成式视频创作，适合快速定位无水印导出入口。</p>
+        <button class="btn" onclick="openPlatform('https://www.klingai.com/')">提取无水印</button>
+      </div>
+    </div>
+
+    <div class="footer">AI 去水印助手 • 预览版</div>
+  </div>
+
+  <script>
+    function openPlatform(url) {
+      const msg = '将进入平台：' + url + '\n请在对应站点中使用“下载/导出/提取”入口。';
+      if (window.androidBridge) {
+        window.androidBridge.showToast(msg);
+      } else {
+        alert(msg);
+      }
+      window.open(url, '_blank');
+    }
+  </script>
+</body>
+</html>
